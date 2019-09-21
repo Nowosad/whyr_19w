@@ -4,18 +4,11 @@
 ##   "dplyr",
 ##   "tmap",
 ##   "spData",
-##   "usethis"
 ## )
 ## to_install = !pkgs %in% installed.packages()
 ## if(any(to_install)) {
 ##   install.packages(pkgs[to_install])
 ## }
-## 
-## install.packages("spDataLarge",
-##            repos = "https://nowosad.github.io/drat/",
-##            type = "source")
-
-
 
 library(sf)
 polska = st_read("data/polska.gpkg")

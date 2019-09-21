@@ -1,7 +1,7 @@
 library(sf)
 library(tmap)
 library(spData)
-library(spDataLarge)
+load("data/nz_elev.rda")
 
 tm_shape(nz_elev)  +
   tm_raster(title = "elev", 
@@ -11,7 +11,7 @@ tm_shape(nz_elev)  +
   tm_borders(col = "red", 
              lwd = 3) +
   tm_scale_bar(breaks = c(0, 100, 200),
-               size = 1) +
+               text.size = 1) +
   tm_compass(position = c("LEFT", "center"),
              type = "rose", 
              size = 2) +

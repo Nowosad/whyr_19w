@@ -4,21 +4,24 @@
 ##   "dplyr",
 ##   "tmap",
 ##   "spData",
+##   "usethis"
 ## )
 ## to_install = !pkgs %in% installed.packages()
 ## if(any(to_install)) {
 ##   install.packages(pkgs[to_install])
 ## }
 
+
+
 library(sf)
-polska = st_read("data/polska.gpkg")
+poland = st_read("data/poland.gpkg")
 
-plot(polska)
+plot(poland)
 
-polska
+poland
 
 library(raster)
-dem = raster("data/polska_srtm.tif")
+dem = raster("data/poland_srtm.tif")
 
 plot(dem)
 
@@ -26,21 +29,21 @@ dem
 
 library(tmap)
 
-tm_shape(polska) + 
+tm_shape(poland) + 
   tm_polygons()
 
-tm_shape(polska) + 
+tm_shape(poland) + 
   tm_polygons() + 
   tm_scale_bar(position = c("left", 
                             "bottom")) 
 
-tm_shape(polska) + 
+tm_shape(poland) + 
   tm_polygons() + 
   tm_scale_bar(position = c("left", 
                             "bottom")) + 
   tm_compass()
 
-tm_shape(polska) + 
+tm_shape(poland) + 
   tm_polygons() + 
   tm_scale_bar(position = c("left", 
                             "bottom")) + 
@@ -49,7 +52,7 @@ tm_shape(polska) +
 
 ## tmap_mode("view")
 
-## tm_shape(polska) +
+## tm_shape(poland) +
 ##   tm_polygons() +
 ##   tm_layout(title = "Poland")
 
@@ -122,14 +125,17 @@ map1 = tm_shape(dem) +
 
 library(dplyr)
 
-meteo_data = read.csv("data/polska_meteo_2017.csv", encoding = "UTF-8")
-head(meteo_data)
+## meteo_data = read.csv("data/poland_meteo_2017.csv", encoding = "UTF-8")
+## head(meteo_data)
 
-meteo_stations = st_read("data/polska_stacje.gpkg")
+
+
+meteo_stations = st_read("data/poland_stacje.gpkg")
 plot(st_geometry(meteo_stations))
 
 meteo_data_sel = meteo_data %>% 
   filter(Nazwa.stacji %in% unique(meteo_stations$NAZWA_ST))
+
 
 
 meteo_data_sel = meteo_data %>% 
@@ -188,7 +194,7 @@ tm_shape(dem) +
 meteo$elev = extract(dem, meteo)
 head(meteo)
 
-lc = raster("data/polska_lc.tif")
+lc = raster("data/poland_lc.tif")
 plot(lc)
 
 wlkp_pn = st_read("data/wlkp_pn.gpkg", quiet = TRUE)
